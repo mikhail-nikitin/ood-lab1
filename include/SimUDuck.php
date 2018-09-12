@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/FlyBehavior.php';
+require_once __DIR__ . '/QuackBehavior.php';
+
 class SimUDuck
 {
     public function run()
@@ -23,16 +26,28 @@ class SimUDuck
 
 abstract class Duck
 {
+    /** @var IFlyBehavior */
+    private $flyBehavior;
+
+    /** @var IQuackBehavior */
+    private $quackBehavior;
+
+    public function __construct(IFlyBehavior $flyBehavior, IQuackBehavior $quackBehavior)
+    {
+        $this->flyBehavior = $flyBehavior;
+        $this->quackBehavior = $quackBehavior;
+    }
+
     abstract public function display();
 
     public function quack()
     {
-        echo "I'm quacking\n";
+        $this->quackBehavior->quack();
     }
 
     public function fly()
     {
-        echo "I'm flying with wings\n";
+        $this->flyBehavior->fly();
     }
 
     public function dance()
@@ -43,6 +58,11 @@ abstract class Duck
 
 class MallardDuck extends Duck
 {
+    public function __construct()
+    {
+        parent::__construct(new FlyWithWings(), new QuackBehavior());
+    }
+
     public function display()
     {
         echo "I'm a mallard duck\n";
@@ -51,6 +71,11 @@ class MallardDuck extends Duck
 
 class RedheadDuck extends Duck
 {
+    public function __construct()
+    {
+        parent::__construct(new FlyWithWings(), new QuackBehavior());
+    }
+
     public function display()
     {
         echo "I'm a redhead duck\n";
