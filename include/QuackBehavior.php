@@ -1,53 +1,38 @@
 <?php
 
-interface IQuackBehavior
+class QuackBehavior
 {
-    public function quack();
-}
-
-class QuackBehavior implements IQuackBehavior
-{
-    public function quack()
-    {
-        echo "Quack Quack!!!\n";
-    }
-
     /**
-     * @return QuackBehavior
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        return function () {
+            echo "Quack Quack!!!\n";
+        };
     }
 }
 
-class MuteQuackBehavior implements IQuackBehavior
+class MuteQuackBehavior
 {
-    public function quack()
-    {
-    }
-
     /**
-     * @return MuteQuackBehavior
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        return function () {};
     }
 }
 
-class SqueakBehavior implements IQuackBehavior
+class SqueakBehavior
 {
-    public function quack()
-    {
-        echo "Squeak!!!\n";
-    }
-
     /**
-     * @return SqueakBehavior
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        return function () {
+            echo "Squeak!!!\n";
+        };
     }
 }

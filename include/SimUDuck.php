@@ -44,13 +44,13 @@ abstract class Duck
     /** @var callable */
     private $flyBehavior;
 
-    /** @var IQuackBehavior */
+    /** @var callable */
     private $quackBehavior;
 
     /** @var IDanceBehavior */
     private $danceBehavior;
 
-    public function __construct(callable $flyBehavior, IQuackBehavior $quackBehavior, IDanceBehavior $danceBehavior)
+    public function __construct(callable $flyBehavior, callable $quackBehavior, IDanceBehavior $danceBehavior)
     {
         $this->flyBehavior = $flyBehavior;
         $this->quackBehavior = $quackBehavior;
@@ -61,7 +61,7 @@ abstract class Duck
 
     public function quack()
     {
-        $this->quackBehavior->quack();
+        call_user_func($this->quackBehavior);
     }
 
     public function fly()
