@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/FlyBehavior.php';
 require_once __DIR__ . '/QuackBehavior.php';
+require_once __DIR__ . '/DanceBehavior.php';
 
 class SimUDuck
 {
@@ -43,10 +44,14 @@ abstract class Duck
     /** @var IQuackBehavior */
     private $quackBehavior;
 
-    public function __construct(IFlyBehavior $flyBehavior, IQuackBehavior $quackBehavior)
+    /** @var IDanceBehavior */
+    private $danceBehavior;
+
+    public function __construct(IFlyBehavior $flyBehavior, IQuackBehavior $quackBehavior, IDanceBehavior $danceBehavior)
     {
         $this->flyBehavior = $flyBehavior;
         $this->quackBehavior = $quackBehavior;
+        $this->danceBehavior = $danceBehavior;
     }
 
     abstract public function display();
@@ -71,7 +76,7 @@ abstract class Duck
 
     public function dance()
     {
-        echo "I'm dancing\n";
+        $this->danceBehavior->dance();
     }
 }
 
@@ -79,7 +84,7 @@ class MallardDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyWithWings(), new QuackBehavior());
+        parent::__construct(new FlyWithWings(), new QuackBehavior(), new WaltzBehavior());
     }
 
     public function display()
@@ -92,7 +97,7 @@ class RedheadDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyWithWings(), new QuackBehavior());
+        parent::__construct(new FlyWithWings(), new QuackBehavior(), new MinuetBehavior());
     }
 
     public function display()
@@ -105,16 +110,12 @@ class DecoyDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyNoWay(), new MuteQuackBehavior());
+        parent::__construct(new FlyNoWay(), new MuteQuackBehavior(), new NoDanceBehavior());
     }
 
     public function display()
     {
         echo "I'm a decoy duck\n";
-    }
-
-    public function dance()
-    {
     }
 }
 
@@ -122,16 +123,12 @@ class RubberDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyNoWay(), new SqueakBehavior());
+        parent::__construct(new FlyNoWay(), new SqueakBehavior(), new NoDanceBehavior());
     }
 
     public function display()
     {
         echo "I'm a rubber duck\n";
-    }
-
-    public function dance()
-    {
     }
 }
 
@@ -139,15 +136,11 @@ class ModelDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyNoWay(), new MuteQuackBehavior());
+        parent::__construct(new FlyNoWay(), new MuteQuackBehavior(), new NoDanceBehavior());
     }
 
     public function display()
     {
         echo "I'm a model duck\n";
-    }
-
-    public function dance()
-    {
     }
 }
