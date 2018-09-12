@@ -12,6 +12,9 @@ class SimUDuck
 
         $duck = new RedheadDuck();
         $this->playWithDuck($duck);
+
+        $duck = new DecoyDuck();
+        $this->playWithDuck($duck);
     }
 
     private function playWithDuck(Duck $duck)
@@ -79,5 +82,22 @@ class RedheadDuck extends Duck
     public function display()
     {
         echo "I'm a redhead duck\n";
+    }
+}
+
+class DecoyDuck extends Duck
+{
+    public function __construct()
+    {
+        parent::__construct(new FlyNoWay(), new MuteQuackBehavior());
+    }
+
+    public function display()
+    {
+        echo "I'm a decoy duck\n";
+    }
+
+    public function dance()
+    {
     }
 }

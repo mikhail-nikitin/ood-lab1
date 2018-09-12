@@ -12,3 +12,10 @@ class QuackBehavior implements IQuackBehavior
         echo "Quack Quack!!!\n";
     }
 }
+
+class MuteQuackBehavior implements IQuackBehavior
+{
+    public function quack()
+    {
+    }
+}

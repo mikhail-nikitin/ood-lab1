@@ -12,3 +12,10 @@ class FlyWithWings implements IFlyBehavior
         echo "I'm flying with wings!\n";
     }
 }
+
+class FlyNoWay implements IFlyBehavior
+{
+    public function fly()
+    {
+    }
+}
