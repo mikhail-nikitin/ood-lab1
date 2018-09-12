@@ -19,3 +19,11 @@ class MuteQuackBehavior implements IQuackBehavior
     {
     }
 }
+
+class SqueakBehavior implements IQuackBehavior
+{
+    public function quack()
+    {
+        echo "Squeak!!!\n";
+    }
+}
