@@ -18,6 +18,11 @@ class SimUDuck
 
         $duck = new DecoyDuck();
         $this->playWithDuck($duck);
+
+        $duck = new ModelDuck();
+        $this->playWithDuck($duck);
+        $duck->setFlyBehavior(new FlyWithWings());
+        $this->playWithDuck($duck);
     }
 
     private function playWithDuck(Duck $duck)
@@ -54,6 +59,14 @@ abstract class Duck
     public function fly()
     {
         $this->flyBehavior->fly();
+    }
+
+    /**
+     * @param IFlyBehavior $flyBehavior
+     */
+    public function setFlyBehavior(IFlyBehavior $flyBehavior)
+    {
+        $this->flyBehavior = $flyBehavior;
     }
 
     public function dance()
@@ -115,6 +128,23 @@ class RubberDuck extends Duck
     public function display()
     {
         echo "I'm a rubber duck\n";
+    }
+
+    public function dance()
+    {
+    }
+}
+
+class ModelDuck extends Duck
+{
+    public function __construct()
+    {
+        parent::__construct(new FlyNoWay(), new MuteQuackBehavior());
+    }
+
+    public function display()
+    {
+        echo "I'm a model duck\n";
     }
 
     public function dance()
