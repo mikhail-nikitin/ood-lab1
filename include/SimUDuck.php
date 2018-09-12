@@ -4,7 +4,10 @@ class SimUDuck
 {
     public function run()
     {
-        $duck = new Duck();
+        $duck = new MallardDuck();
+        $this->playWithDuck($duck);
+
+        $duck = new RedheadDuck();
         $this->playWithDuck($duck);
     }
 
@@ -18,12 +21,9 @@ class SimUDuck
     }
 }
 
-class Duck
+abstract class Duck
 {
-    public function display()
-    {
-        echo "A base duck\n";
-    }
+    abstract public function display();
 
     public function quack()
     {
@@ -32,11 +32,27 @@ class Duck
 
     public function fly()
     {
-        echo "I'm flying\n";
+        echo "I'm flying with wings\n";
     }
 
     public function dance()
     {
         echo "I'm dancing\n";
+    }
+}
+
+class MallardDuck extends Duck
+{
+    public function display()
+    {
+        echo "I'm a mallard duck\n";
+    }
+}
+
+class RedheadDuck extends Duck
+{
+    public function display()
+    {
+        echo "I'm a redhead duck\n";
     }
 }
