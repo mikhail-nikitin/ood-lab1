@@ -1,5 +1,23 @@
 <?php
 
+class SimUDuck
+{
+    public function run()
+    {
+        $duck = new Duck();
+        $this->playWithDuck($duck);
+    }
+
+    private function playWithDuck(Duck $duck)
+    {
+        $duck->display();
+        $duck->quack();
+        $duck->fly();
+        $duck->dance();
+        echo PHP_EOL;
+    }
+}
+
 class Duck
 {
     public function display()
@@ -20,23 +38,5 @@ class Duck
     public function dance()
     {
         echo "I'm dancing\n";
-    }
-}
-
-class SimUDuck
-{
-    public function run()
-    {
-        $duck = new Duck();
-        $this->playWithDuck($duck);
-    }
-
-    private function playWithDuck(Duck $duck)
-    {
-        $duck->display();
-        $duck->quack();
-        $duck->fly();
-        $duck->dance();
-        echo PHP_EOL;
     }
 }
