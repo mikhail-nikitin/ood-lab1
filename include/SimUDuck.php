@@ -41,7 +41,7 @@ class SimUDuck
 
 abstract class Duck
 {
-    /** @var IFlyBehavior */
+    /** @var callable */
     private $flyBehavior;
 
     /** @var IQuackBehavior */
@@ -50,7 +50,7 @@ abstract class Duck
     /** @var IDanceBehavior */
     private $danceBehavior;
 
-    public function __construct(IFlyBehavior $flyBehavior, IQuackBehavior $quackBehavior, IDanceBehavior $danceBehavior)
+    public function __construct(callable $flyBehavior, IQuackBehavior $quackBehavior, IDanceBehavior $danceBehavior)
     {
         $this->flyBehavior = $flyBehavior;
         $this->quackBehavior = $quackBehavior;
@@ -66,13 +66,13 @@ abstract class Duck
 
     public function fly()
     {
-        $this->flyBehavior->fly();
+        call_user_func($this->flyBehavior);
     }
 
     /**
-     * @param IFlyBehavior $flyBehavior
+     * @param callable $flyBehavior
      */
-    public function setFlyBehavior(IFlyBehavior $flyBehavior)
+    public function setFlyBehavior(callable $flyBehavior)
     {
         $this->flyBehavior = $flyBehavior;
     }

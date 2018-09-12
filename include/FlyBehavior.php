@@ -1,71 +1,42 @@
 <?php
 
-interface IFlyBehavior
+class FlyWithWings
 {
-    public function fly();
-}
-
-class FlyWithWings implements IFlyBehavior
-{
-    public function fly()
-    {
-        echo "I'm flying with wings!\n";
-    }
-
     /**
-     * @return FlyWithWings
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        return function () {
+            echo "I'm flying with wings!\n";
+        };
     }
 }
 
-class CountedFlyWithWings extends FlyWithWings
+class CountedFlyWithWings
 {
-    /** @var int */
-    private $flightCount;
-
-    public function __construct()
-    {
-        $this->flightCount = 0;
-    }
-
-    public function fly()
-    {
-        echo "Flight #{$this->getFlightNumber()}: ";
-        parent::fly();
-        ++$this->flightCount;
-    }
-
     /**
-     * @return int
-     */
-    public function getFlightNumber()
-    {
-        return $this->flightCount + 1;
-    }
-
-    /**
-     * @return CountedFlyWithWings
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        $flightCount = 0;
+
+        return function () use (&$flightCount) {
+            $flightNumber = $flightCount + 1;
+            echo "Flight #{$flightNumber}: I'm flying with wings!\n";
+            ++$flightCount;
+        };
     }
 }
 
-class FlyNoWay implements IFlyBehavior
+class FlyNoWay
 {
-    public function fly()
-    {
-    }
-
     /**
-     * @return FlyNoWay
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        return function () {};
     }
 }
