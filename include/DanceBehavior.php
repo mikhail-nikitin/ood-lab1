@@ -1,53 +1,38 @@
 <?php
 
-interface IDanceBehavior
+class WaltzBehavior
 {
-    public function dance();
-}
-
-class WaltzBehavior implements IDanceBehavior
-{
-    public function dance()
-    {
-        echo "I'm waltzing\n";
-    }
-
     /**
-     * @return WaltzBehavior
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        return function () {
+            echo "I'm waltzing\n";
+        };
     }
 }
 
-class MinuetBehavior implements IDanceBehavior
+class MinuetBehavior
 {
-    public function dance()
-    {
-        echo "I'm dancing minuet\n";
-    }
-
     /**
-     * @return MinuetBehavior
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        return function () {
+            echo "I'm dancing minuet\n";
+        };
     }
 }
 
-class NoDanceBehavior implements IDanceBehavior
+class NoDanceBehavior
 {
-    public function dance()
-    {
-    }
-
     /**
-     * @return NoDanceBehavior
+     * @return callable
      */
     public static function create()
     {
-        return new self();
+        return function () {};
     }
 }
