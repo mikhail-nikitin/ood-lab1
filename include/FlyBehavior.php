@@ -11,6 +11,14 @@ class FlyWithWings implements IFlyBehavior
     {
         echo "I'm flying with wings!\n";
     }
+
+    /**
+     * @return FlyWithWings
+     */
+    public static function create()
+    {
+        return new self();
+    }
 }
 
 class CountedFlyWithWings extends FlyWithWings
@@ -37,11 +45,27 @@ class CountedFlyWithWings extends FlyWithWings
     {
         return $this->flightCount + 1;
     }
+
+    /**
+     * @return CountedFlyWithWings
+     */
+    public static function create()
+    {
+        return new self();
+    }
 }
 
 class FlyNoWay implements IFlyBehavior
 {
     public function fly()
     {
+    }
+
+    /**
+     * @return FlyNoWay
+     */
+    public static function create()
+    {
+        return new self();
     }
 }

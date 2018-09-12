@@ -22,7 +22,7 @@ class SimUDuck
 
         $duck = new ModelDuck();
         $this->playWithDuck($duck);
-        $duck->setFlyBehavior(new FlyWithWings());
+        $duck->setFlyBehavior(FlyWithWings::create());
         $this->playWithDuck($duck);
     }
 
@@ -87,7 +87,11 @@ class MallardDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new CountedFlyWithWings(), new QuackBehavior(), new WaltzBehavior());
+        parent::__construct(
+            CountedFlyWithWings::create(),
+            QuackBehavior::create(),
+            WaltzBehavior::create()
+        );
     }
 
     public function display()
@@ -100,7 +104,11 @@ class RedheadDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new CountedFlyWithWings(), new QuackBehavior(), new MinuetBehavior());
+        parent::__construct(
+            CountedFlyWithWings::create(),
+            QuackBehavior::create(),
+            MinuetBehavior::create()
+        );
     }
 
     public function display()
@@ -113,7 +121,11 @@ class DecoyDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyNoWay(), new MuteQuackBehavior(), new NoDanceBehavior());
+        parent::__construct(
+            FlyNoWay::create(),
+            MuteQuackBehavior::create(),
+            NoDanceBehavior::create()
+        );
     }
 
     public function display()
@@ -126,7 +138,11 @@ class RubberDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyNoWay(), new SqueakBehavior(), new NoDanceBehavior());
+        parent::__construct(
+            FlyNoWay::create(),
+            SqueakBehavior::create(),
+            NoDanceBehavior::create()
+        );
     }
 
     public function display()
@@ -139,7 +155,11 @@ class ModelDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyNoWay(), new MuteQuackBehavior(), new NoDanceBehavior());
+        parent::__construct(
+            FlyNoWay::create(),
+            MuteQuackBehavior::create(),
+            NoDanceBehavior::create()
+        );
     }
 
     public function display()
