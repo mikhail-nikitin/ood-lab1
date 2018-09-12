@@ -32,6 +32,9 @@ class SimUDuck
         $duck->quack();
         $duck->fly();
         $duck->dance();
+
+        $duck->fly();
+        $duck->fly();
         echo PHP_EOL;
     }
 }
@@ -84,7 +87,7 @@ class MallardDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyWithWings(), new QuackBehavior(), new WaltzBehavior());
+        parent::__construct(new CountedFlyWithWings(), new QuackBehavior(), new WaltzBehavior());
     }
 
     public function display()
@@ -97,7 +100,7 @@ class RedheadDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyWithWings(), new QuackBehavior(), new MinuetBehavior());
+        parent::__construct(new CountedFlyWithWings(), new QuackBehavior(), new MinuetBehavior());
     }
 
     public function display()
